@@ -3,6 +3,7 @@ require_relative 'value_struct/core'
 require_relative 'value_struct/to_h'
 require_relative 'value_struct/dup_with_changes'
 require_relative 'value_struct/strict_arguments'
+require_relative 'value_struct/clone'
 require_relative 'value_struct/freeze'
 
 class ValueStruct < Struct

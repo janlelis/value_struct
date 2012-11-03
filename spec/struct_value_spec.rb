@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe ValueStruct do
-  it "should have a VERSION constant" do
-    ValueStruct.const_get('VERSION').should_not be_empty
-  end
-
-  describe 'initialization' do
+  describe 'general behavior' do
     subject do
       ValueStruct.new(:x, :y)
+    end
+
+    it "should have a VERSION constant" do
+      ValueStruct.const_get('VERSION').should_not be_empty
     end
 
     it 'creates Class instances' do
@@ -36,12 +36,6 @@ describe ValueStruct do
     it 'does not allow mutatation using []= syntax' do
       expect{ subject[:x] = 5 }.to raise_error(NoMethodError)
     end
-
-    # it 'raises argument errors if not given the right number of arguments' do
-    #   lambda{
-    #     Point.new
-    #   }.should raise_error(ArgumentError, 'wrong number of arguments (0 for 2)')
-    # end
 
     it 'can be inherited from to add methods' do
       class GraphPoint < ValueStruct.new(:x, :y)
@@ -86,9 +80,4 @@ describe ValueStruct do
       debugger
     end
   end
-
-  # describe '#clone and #dup return the same object' do
-  #   it{ subject.object_id.should == subject.clone.object_id }
-  #   it{ subject.object_id.should == subject.dup.object_id }
-  # end
 end

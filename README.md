@@ -55,10 +55,6 @@ Because of the nature of Ruby, most things are not really immutable. So if you h
 
     $ gem install value_struct
 
-## Todo
-
-* Make test suite clean and useful
-
 ## Influenced by / Thanks to
 
 * Ruby Rogues #123
