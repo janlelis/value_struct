@@ -1,4 +1,7 @@
-### 0.1.0 / 2012-11-01
+### 0.6.0
+* Fix specs
+* Fix #dup
 
-* Initial release:
+### 0.5.0 / 2012-11-03
 
+* Initial puplic release:

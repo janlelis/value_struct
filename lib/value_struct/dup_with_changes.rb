@@ -2,12 +2,12 @@ module ValueStruct::DupWithChanges
   def dup(changes = {})
     case changes
     when {}
-      new(values)
+      self.class.new(*values)
     when Hash
-      new(
-        members.zip(values).map{ |member, value|
-          if changes.has_key?(m)
-            changes[m]
+      self.class.new(
+        *members.zip(values).map{ |member, value|
+          if changes.has_key?(member)
+            changes[member]
           else
             value
           end
