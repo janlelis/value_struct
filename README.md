@@ -11,7 +11,7 @@ This gem also provides the following (optional) mixins, to make life easier when
 * __Freeze__ Automatically freeze new instances
 * __ToH__ #to_h for converting into a hash (if Ruby version below < 2.0)
 
-By default, only the DupWithChanges mixin gets included.
+By default, only the DupWithChanges and ToH mixins get included.
 
 ## Why?
 
@@ -20,6 +20,15 @@ Sometimes you want to eliminate state. See [this blog article] for more informat
 ## Performance
 
 Without mixins, ValueStructs are as fast as normal structs. Some (optional) mixins add noticable overhead, e.g. StrictArguments
+
+## How to use structs with mixins
+
+    Point = ValueStruct.new_with_mixins :x, :y, [
+      ValueStruct::DupWithChanges,
+      ValueStruct::ToH,
+      ValueStruct::StrictArguments,
+      ValueStruct::Freeze,
+    ]
 
 ## Example
 
@@ -48,7 +57,6 @@ Because of the nature of Ruby, most things are not really immutable. So if you h
 
 ## Todo
 
-* Release
 * Make test suite clean and useful
 
 ## Influenced by / Thanks to
