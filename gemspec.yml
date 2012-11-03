@@ -1,0 +1,19 @@
+name: value_struct
+summary: "Struct-like value objects"
+description: "TODO: Description for value_struct"
+license: MIT
+authors: Jan Lelis
+email: mail@janlelis.de
+homepage: https://github.com/janlelis/value_struct
+
+development_dependencies:
+  bundler: ~> 1.0
+  rake: ~> 0.8
+  rspec: ~> 2.4
+  rubygems-tasks: ~> 0.2
+  yard: ~> 0.8
+  kramdown: ~> 0.14 
+  debugger: ~> 1.2.1
+  values: ~> 1.2.1
+  immutable_struct: ~> 1.0.2
+  hamster: ~> 0.4.3
