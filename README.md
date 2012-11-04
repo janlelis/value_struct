@@ -4,14 +4,16 @@ A value struct is a subclass of normal [Ruby struct](http://blog.grayproductions
 
 __Value structs are immutable, i.e. they don't have setters (although, not recursively*)__
 
-This gem also provides the following (optional) mixins, to make life easier when using immutable structs:
+Additionally, this gem provides the following optional mixins to make life easier when using immutable structs:
 
-* __DupWithChanges__ #dup takes a optional hash for setting new values
-* __StrictArguments__ Value structs need to be initialized with the exact amount of arguments
-* __Freeze__ Automatically freeze new instances
-* __ToH__ #to_h for converting into a hash (if Ruby version below < 2.0)
+* __:dup_with_changes__ #dup takes a optional hash for setting new values in the duplicate
+* __:to_h__ #to_h for converting into a valuestruct into a hash (if Ruby version below < 2.0)
 
-By default, only the DupWithChanges and ToH mixins get included.
+* __:strict_arguments__ Value structs need to be initialized with the exact amount of arguments
+* __:freeze__ Automatically freezes new instances
+* __:no_clone__ #clone does not clone, but return the same object
+
+By default, only :dup_with_changes and :to_h get included.
 
 ## Why?
 
@@ -19,16 +21,7 @@ Sometimes you want to eliminate state. See [this blog article] for more informat
 
 ## Performance
 
-Without mixins, ValueStructs are as fast as normal structs. Some (optional) mixins add noticable overhead, e.g. StrictArguments
-
-## How to use structs with mixins
-
-    Point = ValueStruct.new_with_mixins :x, :y, [
-      ValueStruct::DupWithChanges,
-      ValueStruct::ToH,
-      ValueStruct::StrictArguments,
-      ValueStruct::Freeze,
-    ]
+Without mixins, ValueStructs are as fast as normal structs. Some (optional) mixins add noticable overhead, e.g. strict_arguments
 
 ## Example
 
@@ -39,6 +32,21 @@ Without mixins, ValueStructs are as fast as normal structs. Some (optional) mixi
     end
 
 Please refer to the [documentation of Ruby's struct] for more details on usage.
+
+## How to use structs with mixins
+
+    Point = ValueStruct.new_with_mixins :x, :y, [
+      ValueStruct::ToH,
+      ValueStruct::Freeze,
+      ValueStruct::DupWithChanges,
+      ValueStruct::StrictArguments,
+    ]
+
+    p = Point.new(1,2)
+    p.to_h       #=> { :x => 1, :y => 2 }
+    p.frozen?    #=> true
+    p.dup(x: 0)  #=> #<ValueStruct Point x=0, y=2>
+    Point.new(1) # ArgumentError
 
 ## *
 
@@ -57,8 +65,8 @@ Because of the nature of Ruby, most things are not really immutable. So if you h
 
 ## Influenced by / Thanks to
 
-* Ruby Rogues #123
 * Tom Crayford: [Values](https://github.com/tcrayford/Values)
-* https://github.com/iconara/immutable_struct
+* Theo Hultberg: [ImmutableStruct](https://github.com/iconara/immutable_struct)
+* Ruby Rogues
 
 ## J-_-L

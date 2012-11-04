@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe ValueStruct::Clone do
+describe ValueStruct::NoClone do
   subject do
-    ValueStruct.new_with_mixins(:x, :y, [ValueStruct::Clone]).new(1,2)
+    ValueStruct.new_with_mixins(:x, :y, [ValueStruct::NoClone]).new(1,2)
   end
 
   it{ subject.object_id.should == subject.clone.object_id }

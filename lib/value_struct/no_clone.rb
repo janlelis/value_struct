@@ -1,4 +1,4 @@
-module ValueStruct::Clone
+module ValueStruct::NoClone
   def clone
     self
   end
