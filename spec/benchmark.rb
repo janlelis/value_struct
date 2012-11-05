@@ -3,7 +3,7 @@ require 'benchmark'
 require 'immutable_struct'
 require 'values'
 
-COUNT = 200_000
+COUNT = 1_000_000
 
 def benchmark_for(struct_class)
   puts "%20s: %s" % [

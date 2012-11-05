@@ -6,22 +6,19 @@ __Value structs are immutable, i.e. they don't have setters (although, not recur
 
 Additionally, this gem provides the following optional mixins to make life easier when using immutable structs:
 
-* __:dup_with_changes__ #dup takes a optional hash for setting new values in the duplicate
-* __:to_h__ #to_h for converting into a valuestruct into a hash (if Ruby version below < 2.0)
-
+* __:dup_with_changes__ Extends `#dup` to take a optional hash for setting new values in the duplicate
+* __:to_h__ Provides a method for converting the struct to a hash: `#to_h` (if Ruby version below < 2.0)
 * __:strict_arguments__ Value structs need to be initialized with the exact amount of arguments
 * __:freeze__ Automatically freezes new instances
-* __:no_clone__ #clone does not clone, but return the same object
+* __:no_clone__ Alters `#clone` to return the same object
 
 By default, only :dup_with_changes and :to_h get included.
 
+Without mixins, ValueStructs are almost as fast as normal structs. Some (optional) mixins add noticable overhead, e.g. strict_arguments
+
 ## Why?
 
-Sometimes you want to eliminate state. See [this blog article] for more information.
-
-## Performance
-
-Without mixins, ValueStructs are as fast as normal structs. Some (optional) mixins add noticable overhead, e.g. strict_arguments
+See [this blog article](http://rbjl.net/65-value_struct-read-only-structs-in-ruby) for more information.
 
 ## Example
 
@@ -31,15 +28,15 @@ Without mixins, ValueStructs are as fast as normal structs. Some (optional) mixi
       # ...
     end
 
-Please refer to the [documentation of Ruby's struct] for more details on usage.
+Please refer to the "documentation of Ruby's struct":http://www.ruby-doc.org/core-1.9.3/Struct.html for more details on general struct usage.
 
 ## How to use structs with mixins
 
     Point = ValueStruct.new_with_mixins :x, :y, [
-      ValueStruct::ToH,
-      ValueStruct::Freeze,
-      ValueStruct::DupWithChanges,
-      ValueStruct::StrictArguments,
+      :to_h,
+      :freeze,
+      :dup_with_changes,
+      :strict_arguments,
     ]
 
     p = Point.new(1,2)
@@ -47,6 +44,8 @@ Please refer to the [documentation of Ruby's struct] for more details on usage.
     p.frozen?    #=> true
     p.dup(x: 0)  #=> #<ValueStruct Point x=0, y=2>
     Point.new(1) # ArgumentError
+
+Alternatively, you can put a custom module in the mixin array.
 
 ## *
 
