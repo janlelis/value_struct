@@ -13,7 +13,10 @@ describe ValueStruct do
     describe '.new' do
       it 'calls .new_with_mixins and adds default mixins' do
         subject.should_receive(:new_with_mixins).with(
-          :x, :y,  [ValueStruct::ToH, ValueStruct::DupWithChanges]
+          :x, :y,[
+            (RUBY_VERSION[0] < ?2 ? ValueStruct::ToH : nil),
+            ValueStruct::DupWithChanges,
+          ].compact
         )
         subject.new(:x, :y)
       end

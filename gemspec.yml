@@ -12,7 +12,6 @@ development_dependencies:
   rubygems-tasks: ~> 0.2
   yard: ~> 0.8
   kramdown: ~> 0.14 
-  debugger: ~> 1.2.1
   values: ~> 1.2.1
   immutable_struct: ~> 1.0.2
   hamster: ~> 0.4.3
