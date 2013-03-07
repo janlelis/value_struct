@@ -1,4 +1,4 @@
-# Value Struct
+# Value Struct [![[travis]](https://travis-ci.org/janlelis/value_struct.png)](https://travis-ci.org/janlelis/value_struct)
 
 A value struct is a subclass of the normal [Ruby struct](http://blog.grayproductions.net/articles/all_about_struct) that behaves almost the same. However, it has a major difference:
 
