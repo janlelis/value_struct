@@ -51,7 +51,7 @@ Alternatively, you can put custom modules in the mixin array.
     require 'value_struct'
 
     Point = ValueStruct.new_with_mixins(
-      :x, 
+      :x,
       :y,
        [:dup_with_changes, :to_h, :freeze, :no_clone],
     ) do
@@ -113,3 +113,5 @@ Because of the nature of Ruby, most things are not really immutable. So if you h
 * Ruby Rogues
 
 ## J-_-L
+
+Copyright © 2012-2015 Jan Lelis, janlelis.com, released under the MIT license.
