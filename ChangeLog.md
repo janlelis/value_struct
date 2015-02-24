@@ -1,3 +1,7 @@
+### 0.8.0
+* Drop support for Ruby 1
+* Remove #to_h mixin
+
 ### 0.7.0
 * Improve mixin system
 * More logical class/model/inheritance logic
@@ -7,6 +11,5 @@
 * Fix specs
 * Fix #dup
 
-### 0.5.0 / 2012-11-03
-
-* Initial puplic release:
+### 0.5.0
+* Initial puplic release

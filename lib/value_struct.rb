@@ -1,7 +1,6 @@
 require_relative 'value_struct/version'
 
 require_relative 'value_struct/immutable'
-require_relative 'value_struct/to_h'
 require_relative 'value_struct/dup_with_changes'
 require_relative 'value_struct/strict_arguments'
 require_relative 'value_struct/no_clone'
@@ -29,7 +28,6 @@ class ValueStruct < Struct
 
     def new(*args, &block)
       mixins = [ValueStruct::DupWithChanges]
-      mixins.unshift(ValueStruct::ToH) if RUBY_VERSION < "2.0"
       new_with_mixins(*args, mixins, &block)
     end
   end

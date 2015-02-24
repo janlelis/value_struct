@@ -14,7 +14,6 @@ describe ValueStruct do
       it 'calls .new_with_mixins and adds default mixins' do
         subject.should_receive(:new_with_mixins).with(
           :x, :y,[
-            (RUBY_VERSION[0] < ?2 ? ValueStruct::ToH : nil),
             ValueStruct::DupWithChanges,
           ].compact
         )
@@ -23,12 +22,6 @@ describe ValueStruct do
 
       it 'adds the ValueStruct::DupWithChanges mixin' do
         subject.new(:x, :y).new(1,2).should be_a ValueStruct::DupWithChanges
-      end
-
-      it 'adds ValueStruct::ToH if ruby version is below 2.0' do
-        if RUBY_VERSION < "2.0"
-          subject.new(:x, :y).new(1,2).should be_a ValueStruct::ToH
-        end
       end
     end
 
@@ -55,7 +48,6 @@ describe ValueStruct do
       it 'includes all mixins that are given in the last paramater array' do
         mixins = [
           ValueStruct::DupWithChanges,
-          ValueStruct::ToH,
           ValueStruct::StrictArguments,
           ValueStruct::Freeze,
         ]
