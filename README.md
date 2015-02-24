@@ -7,18 +7,17 @@ __Value structs are immutable, i.e. they don't have setters (although, not recur
 Additionally, this gem provides the following optional mixins to make life easier when using immutable structs:
 
 * __:dup_with_changes__ Extends `#dup` to take a optional hash for setting new values in the duplicate
-* __:to_h__ Provides a method for converting the struct to a hash: `#to_h`
 * __:strict_arguments__ Value structs need to be initialized with the exact amount of arguments
 * __:freeze__ Automatically freezes new instances
 * __:no_clone__ Alters `#clone` to return the same object
 
-By default, only __:dup_with_changes__ and __:to_h__ get included.
+By default, only __:dup_with_changes__ will be included.
 
 Without mixins, ValueStructs are almost as fast as normal structs. Some mixins add noticable overhead, e.g. strict_arguments
 
 ## Why?
 
-See [this blog article](http://rbjl.net/65-value_struct-read-only-structs-in-ruby) for more information.
+See [this blog article](http://ruby.janlelis.de/65-value_struct-read-only-structs-in-ruby) for more information.
 
 ## Example 1
 
@@ -27,19 +26,17 @@ See [this blog article](http://rbjl.net/65-value_struct-read-only-structs-in-rub
     SimplePoint = ValueStruct.new(:x, :y)
 
 
-Please refer to the "documentation of Ruby's struct":http://www.ruby-doc.org/core-1.9.3/Struct.html for more details on general struct usage.
+Please refer to the [documentation of Ruby's struct](http://ruby-doc.org/core-2.2.0/Struct.html) for more details on general struct usage.
 
 ## How to use structs with mixins
 
     Point = ValueStruct.new_with_mixins :x, :y, [
-      :to_h,
       :freeze,
       :dup_with_changes,
       :strict_arguments,
     ]
 
     p = Point.new(1,2)
-    p.to_h       #=> { :x => 1, :y => 2 }
     p.frozen?    #=> true
     p.dup(x: 0)  #=> #<ValueStruct Point x=0, y=2>
     Point.new(1) # ArgumentError
@@ -53,7 +50,7 @@ Alternatively, you can put custom modules in the mixin array.
     Point = ValueStruct.new_with_mixins(
       :x,
       :y,
-       [:dup_with_changes, :to_h, :freeze, :no_clone],
+       [:dup_with_changes, :freeze, :no_clone],
     ) do
 
       def initialize(x,y)
