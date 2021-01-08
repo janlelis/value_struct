@@ -2,13 +2,12 @@ name: value_struct
 summary: "Struct-like value objects"
 license: MIT
 authors: Jan Lelis
-email: mail@janlelis.de
+email: hi@ruby.consulting
 homepage: https://github.com/janlelis/value_struct
 
-required_ruby_version: ~> 2.0
+required_ruby_version: ">= 2.0"
 
 development_dependencies:
-  bundler: ~> 1.0
   rake: ~> 0.8
   rspec: ~> 2.4
   rubygems-tasks: ~> 0.2

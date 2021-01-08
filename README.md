@@ -1,6 +1,6 @@
-# Value Struct [![[travis]](https://travis-ci.org/janlelis/value_struct.png)](https://travis-ci.org/janlelis/value_struct)
+# Value Struct [![[version]](https://badge.fury.io/rb/value_struct.svg)](https://badge.fury.io/rb/value_struct)  [![[ci]](https://github.com/janlelis/value_struct/workflows/Test/badge.svg)](https://github.com/janlelis/value_struct/actions?query=workflow%3ATest)
 
-A value struct is a subclass of the normal [Ruby struct](http://blog.grayproductions.net/articles/all_about_struct) that behaves almost the same. However, it has a major difference:
+A value struct is a subclass of the normal [Ruby struct](http://graysoftinc.com/ruby-voodoo/all-about-struct) that behaves almost the same. However, it has a major difference:
 
 __Value structs are immutable, i.e. they don't have setters (although, not recursively*)__
 
@@ -17,7 +17,7 @@ Without mixins, ValueStructs are almost as fast as normal structs. Some mixins a
 
 ## Why?
 
-See [this blog article](http://ruby.janlelis.de/65-value_struct-read-only-structs-in-ruby) for more information.
+See [this blog article](https://rbjl.janlelis.com/65-value_struct-read-only-structs-in-ruby) for more information.
 
 ## Example 1
 
@@ -26,7 +26,7 @@ See [this blog article](http://ruby.janlelis.de/65-value_struct-read-only-struct
     SimplePoint = ValueStruct.new(:x, :y)
 
 
-Please refer to the [documentation of Ruby's struct](http://ruby-doc.org/core-2.2.0/Struct.html) for more details on general struct usage.
+Please refer to the [documentation of Ruby's struct](https://ruby-doc.org/core/Struct.html) for more details on general struct usage.
 
 ## How to use structs with mixins
 
