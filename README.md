@@ -54,7 +54,7 @@ Alternatively, you can put custom modules in the mixin array.
     ) do
 
       def initialize(x,y)
-        raise ArgumentError, 'points must be initilized with two numerics' unless x.is_a?(Numeric) && y.is_a?(Numeric)
+        raise ArgumentError, 'points must be initialized with two numerics' unless x.is_a?(Numeric) && y.is_a?(Numeric)
         super(x,y)
       end
 
